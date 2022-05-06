@@ -38,7 +38,7 @@ namespace IsYonetimSistemi.Dal.Concrete.EntityFramework.Repository
             return item;
         }
 
-        public bool DeleteById(int id)
+        public bool Delete(int id)
         {
             return Delete(Find(id));
         }

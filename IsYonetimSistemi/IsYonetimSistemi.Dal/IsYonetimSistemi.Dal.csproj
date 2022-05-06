@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\EntityFramework\UnitOfWork\" />
     <Folder Include="Concrete\MicroORM\" />
   </ItemGroup>
 

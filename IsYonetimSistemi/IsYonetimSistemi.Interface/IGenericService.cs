@@ -29,5 +29,7 @@ namespace IsYonetimSistemi.Interface
 
         // async silme
         Task<IResponse<bool>> DeleteByIdAsync(int id, bool saveChanges = true);
+
+        void Save();
     }
 }

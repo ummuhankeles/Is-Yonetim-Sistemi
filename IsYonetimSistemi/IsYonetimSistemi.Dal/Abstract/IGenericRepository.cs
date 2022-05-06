@@ -25,7 +25,7 @@ namespace IsYonetimSistemi.Dal.Abstract
         T Update(T item);
 
         // silme
-        bool DeleteById(int id);
+        bool Delete(int id);
 
         bool Delete(T item);
     }
