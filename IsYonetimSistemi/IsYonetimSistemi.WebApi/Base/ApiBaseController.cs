@@ -73,6 +73,24 @@ namespace IsYonetimSistemi.WebApi.Base
             }
         }
 
+        [HttpPut("Update")]
+        public IResponse<TDto> Update(TDto item)
+        {
+            try
+            {
+                return service.Update(item);
+            }
+            catch (Exception ex)
+            {
+                return new Response<TDto>
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Message = $"Error:{ex.Message}",
+                    Data = null
+                };
+            }
+        }
+
         [HttpDelete("Delete")]
         public IResponse<bool> Delete(int id)
         {
