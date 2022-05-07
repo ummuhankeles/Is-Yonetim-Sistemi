@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\IsYonetimSistemi.Bll\IsYonetimSistemi.Bll.csproj" />
+    <ProjectReference Include="..\IsYonetimSistemi.Dal\IsYonetimSistemi.Dal.csproj" />
+    <ProjectReference Include="..\IsYonetimSistemi.Interface\IsYonetimSistemi.Interface.csproj" />
   </ItemGroup>
 
 </Project>

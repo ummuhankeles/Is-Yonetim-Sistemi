@@ -1,6 +1,13 @@
+using IsYonetimSistemi.Bll;
+using IsYonetimSistemi.Dal.Abstract;
+using IsYonetimSistemi.Dal.Concrete.EntityFramework.Context;
+using IsYonetimSistemi.Dal.Concrete.EntityFramework.Repository;
+using IsYonetimSistemi.Dal.Concrete.EntityFramework.UnitOfWork;
+using IsYonetimSistemi.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +32,25 @@ namespace IsYonetimSistemi.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region JwtTokenService
+            #endregion
+
+            #region ApplicationContext
+            services.AddDbContext<IsYonetimSistemiContext>();
+            services.AddScoped<DbContext, IsYonetimSistemiContext>();
+            #endregion
+
+            #region ServiceSection
+            services.AddScoped<IPersonelService, PersonelManager>();
+            #endregion
+
+            #region RepositorySection
+            services.AddScoped<IPersonelRepository, PersonelRepository>();
+            #endregion
+
+            #region UnitOfWork
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
