@@ -3,6 +3,7 @@ using IsYonetimSistemi.Entity.Dto;
 using IsYonetimSistemi.Entity.Models;
 using IsYonetimSistemi.Interface;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace IsYonetimSistemi.Bll
 {
@@ -12,6 +13,7 @@ namespace IsYonetimSistemi.Bll
 
         public PersonelManager(IServiceProvider service) : base(service)
         {
+            personelRepository = service.GetService<IPersonelRepository>();
         }
     }
 }
