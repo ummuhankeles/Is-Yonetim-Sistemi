@@ -1,6 +1,8 @@
 ﻿using IsYonetimSistemi.Entity.Base;
 using IsYonetimSistemi.Entity.IBase;
 using IsYonetimSistemi.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +12,7 @@ namespace IsYonetimSistemi.WebApi.Base
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // apibase den kalıtım alan her yerin authorize yetkisi sorgulansın
     public class ApiBaseController<TService, T, TDto> : ControllerBase where TService : IGenericService<T, TDto> where T : EntityBase where TDto : DtoBase
     {
         private readonly TService service;
@@ -38,7 +41,7 @@ namespace IsYonetimSistemi.WebApi.Base
         }
 
         [HttpGet("GetAll")]
-        public IResponse<List<TDto>> GetAll(int id)
+        public IResponse<List<TDto>> GetAll()
         {
             try
             {

@@ -8,12 +8,12 @@ namespace IsYonetimSistemi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonelController : ApiBaseController<IPersonelService, Personel, DtoPersonel>
+    public class TaskController : ApiBaseController<ITaskService, Task, DtoTask>
     {
-        private readonly IPersonelService personelService;
-        public PersonelController(IPersonelService personelService) : base(personelService)
+        private readonly ITaskService taskService;
+        public TaskController(ITaskService service) : base(service)
         {
-            this.personelService = personelService;
+            this.taskService = taskService;
         }
     }
 }

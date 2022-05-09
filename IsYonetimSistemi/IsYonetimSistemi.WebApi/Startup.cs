@@ -4,6 +4,7 @@ using IsYonetimSistemi.Dal.Concrete.EntityFramework.Context;
 using IsYonetimSistemi.Dal.Concrete.EntityFramework.Repository;
 using IsYonetimSistemi.Dal.Concrete.EntityFramework.UnitOfWork;
 using IsYonetimSistemi.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace IsYonetimSistemi.WebApi
@@ -33,6 +36,23 @@ namespace IsYonetimSistemi.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             #region JwtTokenService
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.SaveToken = true;
+                    cfg.RequireHttpsMetadata = false;
+
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidIssuer = Configuration["Tokens:Issuer"],
+                        ValidAudience = Configuration["Tokens:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+                        RequireSignedTokens = true,
+                        RequireExpirationTime = true
+                    };
+                });
             #endregion
 
             #region ApplicationContext

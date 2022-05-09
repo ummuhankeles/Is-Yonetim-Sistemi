@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IsYonetimSistemi.Entity.Models;
 
 namespace IsYonetimSistemi.Dal.Abstract
 {
     public interface IPersonelRepository
     {
+        Personel Login(Personel login);
     }
 }
