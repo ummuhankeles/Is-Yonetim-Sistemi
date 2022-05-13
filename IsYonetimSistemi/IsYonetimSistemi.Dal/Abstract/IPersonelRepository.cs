@@ -5,5 +5,6 @@ namespace IsYonetimSistemi.Dal.Abstract
     public interface IPersonelRepository
     {
         Personel Login(Personel login);
+        Personel Register(Personel register);
     }
 }

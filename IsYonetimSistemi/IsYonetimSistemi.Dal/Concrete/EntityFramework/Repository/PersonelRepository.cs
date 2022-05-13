@@ -9,6 +9,7 @@ namespace IsYonetimSistemi.Dal.Concrete.EntityFramework.Repository
     {
         public PersonelRepository(DbContext context) : base(context)
         {
+            this.context = context;
         }
 
         public Personel Login(Personel login)
@@ -16,6 +17,13 @@ namespace IsYonetimSistemi.Dal.Concrete.EntityFramework.Repository
             var personel = dbSet.Where(x => x.PersonelEmail == login.PersonelEmail && x.PersonelPassword == login.PersonelPassword).SingleOrDefault();
 
             return personel;
+        }
+
+        public Personel Register(Personel register)
+        {
+            var personelRegister = context.Add(register);
+            context.SaveChanges();
+            return personelRegister.Entity;
         }
     }
 }

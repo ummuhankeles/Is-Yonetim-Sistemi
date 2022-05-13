@@ -55,5 +55,30 @@ namespace IsYonetimSistemi.Bll
                 };
             }
         }
+
+        public IResponse<DtoRegister> Register(DtoRegister register)
+        {
+            Random randomPassword = new Random();
+            register.PersonelPassword = Convert.ToString(randomPassword.Next(100000, 1000000)); // random password üretildi
+            var registerPersonel = personelRepository.Register(ObjectMapper.Mapper.Map<Personel>(register));
+            if (registerPersonel != null)
+            {
+                return new Response<DtoRegister>
+                {
+                    Message = "Personel Added!",
+                    StatusCode = StatusCodes.Status200OK,
+                    Data = register
+                };
+            }
+            else
+            {
+                return new Response<DtoRegister>
+                {
+                    Message = "Personel didn't add!",
+                    StatusCode = StatusCodes.Status406NotAcceptable,
+                    Data = null
+                };
+            }
+        }
     }
 }

@@ -36,5 +36,23 @@ namespace IsYonetimSistemi.WebApi.Controllers
                 };
             }
         }
+
+        [HttpPost("Register")]
+        public IResponse<DtoRegister> Register(DtoRegister register)
+        {
+            try
+            {
+                return personelService.Register(register);
+            }
+            catch (Exception ex)
+            {
+                return new Response<DtoRegister>
+                {
+                    Message = "Error:" + ex.Message,
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                    Data = null
+                };
+            }
+        }
     }
 }

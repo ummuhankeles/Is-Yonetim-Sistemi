@@ -14,6 +14,7 @@ namespace IsYonetimSistemi.Entity.Mapper
             CreateMap<TaskDetail, DtoTaskDetail>().ReverseMap();
             CreateMap<Personel, DtoLoginPersonel>();
             CreateMap<DtoLogin, Personel>();
+            CreateMap<DtoRegister, Personel>();
         }
     }
 }

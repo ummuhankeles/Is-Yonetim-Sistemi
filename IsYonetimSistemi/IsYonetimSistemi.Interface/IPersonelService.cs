@@ -7,5 +7,6 @@ namespace IsYonetimSistemi.Interface
     public interface IPersonelService : IGenericService<Personel, DtoPersonel>
     {
         IResponse<DtoPersonelToken> Login(DtoLogin login);
+        IResponse<DtoRegister> Register(DtoRegister register);
     }
 }
