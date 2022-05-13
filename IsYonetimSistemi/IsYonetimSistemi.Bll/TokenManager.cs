@@ -38,7 +38,7 @@ namespace IsYonetimSistemi.Bll
             };
 
             // security key
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Token:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"]));
 
             // şifrelenmiş kimlik oluşturma
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -47,7 +47,7 @@ namespace IsYonetimSistemi.Bll
             var token = new JwtSecurityToken
             (
                 issuer: configuration["Tokens:Issuer"], // token dağıtıcı url
-                audience: configuration["Tokens:Issuer"], // erişilebilecek apiler
+                audience: configuration["Tokens:Issuer"], // erişilebilecek apiler // audience olmadığı için issuer yazıldı
                 expires: DateTime.Now.AddDays(1), // 1 günlük token
                 notBefore: DateTime.Now, // token üretildekten ne kadar zaman sonra devreye girsin
                 signingCredentials: cred, // kimlik verme
